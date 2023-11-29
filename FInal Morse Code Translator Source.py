@@ -37,13 +37,13 @@ class MorseCodeTranslator:
                 # Join the Morse code representations with a space between each code
                 return ' '.join(morse_code)
             except TypeError as e:
-                 print("Input given is insuppoted for encryption.")
+                 print("Input given is unsupported for encryption as it is not in the dictionary.")
     
     def decrypt(self,morse_code):
         """
         Decrypts the given Morse code into text
 
-        Args:
+        Arguments:
             morse_code(str): The Morse code to be decrypted
         
         Returns:
@@ -63,7 +63,7 @@ class MorseCodeTranslator:
                         raise TypeError
                 return text 
         except TypeError as e:
-            print("Input given is insupported for decryption as it is not found in dictionary.")
+            print("Input given is unsupported for decryption as it is not found in dictionary.")
 
 
 def main():
@@ -78,20 +78,38 @@ def main():
         print("2.Decrypt")
         print("3.Exit")
 
-        choice = int(input("Enter your choice(1,2 or 3)"))
+        choice = int(input("Enter your choice(1,2 or 3):"))
 
         try:
             if choice == 1:
                 text = input("Enter the text to encrypt: ")
                 encrypted_text = translator.encrypt(text)
-                if encrypted_text == "":
+                if encrypted_text == None:
+                    print("Try Again!")
+                else:
                     print(f"Encrypted text: {encrypted_text}")
+            
+            elif choice == 2:
+                morse_code = input("Enter the Morse code to decrypt: ")
+                decrypted_morse_code = translator.decrypt(morse_code)
+                if decrypted_morse_code == "":
+                    print("Try Again!")
+                else:
+                    print(f'Decrypted text: {decrypted_morse_code}')
+
+            elif choice == 3:
+                print("Exiting the program. Bye!")
+
+            else:
+                raise ValueError
+            
         except ValueError as e:
-            print("Wrong Input!")
+            print("Wrong input!")
             print("Invalid choice. Please enter 1, 2 or 3.")
 
 
-
+if __name__ == "__main__":
+        main()
 
         
             
